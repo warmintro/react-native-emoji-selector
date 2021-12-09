@@ -59,6 +59,10 @@ export const Categories = {
   }
 };
 
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 const charFromUtf16 = utf16 =>
   String.fromCodePoint(...utf16.split("-").map(u => "0x" + u));
 export const charFromEmojiObject = obj => charFromUtf16(obj.unified);
@@ -148,7 +152,11 @@ export default class EmojiSelector extends Component {
     if (this.props.showHistory) {
       this.addToHistoryAsync(emoji);
     }
-    this.props.onEmojiSelected({ value: charFromEmojiObject(emoji), ...emoji });
+    this.props.onEmojiSelected({
+      value: charFromEmojiObject(emoji),
+      name: capitalizeFirstLetter(emoji.name),
+      ...emoji
+    });
   };
 
   handleSearch = searchQuery => {
