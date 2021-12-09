@@ -60,7 +60,7 @@ export const Categories = {
 };
 
 function capitalizeFirstLetter(string) {
-  return string.toLowerCase().charAt(0).toUpperCase() + string.slice(1);
+  return string.charAt(0).toUpperCase() + string.toLowerCase().slice(1);
 }
 
 const charFromUtf16 = utf16 =>
