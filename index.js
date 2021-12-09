@@ -154,8 +154,7 @@ export default class EmojiSelector extends Component {
     }
     this.props.onEmojiSelected({
       value: charFromEmojiObject(emoji),
-      name: capitalizeFirstLetter(emoji.name),
-      ...emoji
+      name: capitalizeFirstLetter(emoji.name)
     });
   };
 
