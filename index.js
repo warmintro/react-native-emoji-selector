@@ -148,7 +148,7 @@ export default class EmojiSelector extends Component {
     if (this.props.showHistory) {
       this.addToHistoryAsync(emoji);
     }
-    this.props.onEmojiSelected(charFromEmojiObject(emoji));
+    this.props.onEmojiSelected({ value: charFromEmojiObject(emoji), ...emoji });
   };
 
   handleSearch = searchQuery => {
