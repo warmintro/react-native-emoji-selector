@@ -63,6 +63,10 @@ function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.toLowerCase().slice(1);
 }
 
+function capitalizeFirstLetters(string) {
+  return string.split(' ').map(capitalizeFirstLetter).join(' ')
+}
+
 const charFromUtf16 = utf16 =>
   String.fromCodePoint(...utf16.split("-").map(u => "0x" + u));
 export const charFromEmojiObject = obj => charFromUtf16(obj.unified);
@@ -154,7 +158,7 @@ export default class EmojiSelector extends Component {
     }
     this.props.onEmojiSelected({
       value: charFromEmojiObject(emoji),
-      name: capitalizeFirstLetter(emoji.name)
+      name: capitalizeFirstLetters(emoji.name)
     });
   };
 
