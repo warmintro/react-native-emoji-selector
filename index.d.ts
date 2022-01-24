@@ -25,6 +25,7 @@ declare module "react-native-emoji-selector" {
   export interface EmojiSelectorProps {
     onEmojiSelected(emoji: string): void;
     theme?: string;
+    renderSearchBar: (props: any) => any;
     placeholder?: string;
     showTabs?: boolean;
     showSearchBar?: boolean;
