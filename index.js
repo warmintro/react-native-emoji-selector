@@ -293,25 +293,28 @@ export default class EmojiSelector extends Component {
       showSearchBar,
       showSectionTitles,
       showTabs,
+      renderSearchBar,
       ...other
     } = this.props;
 
     const { category, colSize, isReady, searchQuery } = this.state;
 
-    const Searchbar = (
-      <View style={styles.searchbar_container}>
-        <TextInput
-          style={styles.search}
-          placeholder={placeholder}
-          clearButtonMode="always"
-          returnKeyType="done"
-          autoCorrect={false}
-          underlineColorAndroid={theme}
-          value={searchQuery}
-          onChangeText={this.handleSearch}
-        />
-      </View>
-    );
+    const Searchbar = typeof renderSearchBar === 'function'
+      ? renderSearchBar({ onChangeText: this.handleSearch, value: searchQuery, placeholder })
+      : (
+        <View style={styles.searchbar_container}>
+          <TextInput
+            style={styles.search}
+            placeholder={placeholder}
+            clearButtonMode="always"
+            returnKeyType="done"
+            autoCorrect={false}
+            underlineColorAndroid={theme}
+            value={searchQuery}
+            onChangeText={this.handleSearch}
+          />
+        </View>
+      );
 
     const title = searchQuery !== "" ? "Search Results" : category.name;
 
