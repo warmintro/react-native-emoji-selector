@@ -10,7 +10,7 @@ import {
   AsyncStorage,
 } from "react-native";
 import emoji from "emoji-datasource";
-import { FlatList } from "react-native-gesture-handler"
+import { BottomSheetFlatList } from '@gorhom/bottom-sheet'
 
 export const Categories = {
   all: {
@@ -338,7 +338,7 @@ export default class EmojiSelector extends Component {
                 {showSectionTitles && (
                   <Text style={styles.sectionHeader}>{title}</Text>
                 )}
-                <FlatList
+                <BottomSheetFlatList
                   style={styles.scrollview}
                   contentContainerStyle={{ paddingBottom: colSize }}
                   data={this.returnSectionData()}
