@@ -8,9 +8,9 @@ import {
   Platform,
   ActivityIndicator,
   AsyncStorage,
-  FlatList
 } from "react-native";
 import emoji from "emoji-datasource";
+import { FlatList } from "react-native-gesture-handler"
 
 export const Categories = {
   all: {
