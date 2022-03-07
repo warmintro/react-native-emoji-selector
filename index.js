@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import emoji from "emoji-datasource";
 import { BottomSheetFlatList } from '@gorhom/bottom-sheet'
+import HTML from 'react-native-render-html'
 
 export const Categories = {
   all: {
@@ -120,9 +121,16 @@ const EmojiCell = ({ emoji, colSize, ...other }) => (
     }}
     {...other}
   >
-    <Text style={{ color: "#FFFFFF", fontSize: colSize - 12 }}>
-      {charFromEmojiObject(emoji)}
-    </Text>
+    {
+      Platform.OS === 'android'
+        ? <HTML
+          tagsStyles={{ span: { color: "#FFFFFF", fontSize: colSize - 14 }}}
+          source={{ html: `<span>${charFromEmojiObject(emoji)}</span>` }}
+        />
+        : <Text style={{ color: "#FFFFFF", fontSize: colSize - 12 }}>
+          {charFromEmojiObject(emoji)}
+        </Text>
+    }
   </TouchableOpacity>
 );
 
@@ -213,7 +221,7 @@ export default class EmojiSelector extends Component {
   returnSectionData() {
     const { history, emojiList, searchQuery, category } = this.state;
     let emojiData = (function() {
-        if (category === Categories.all && searchQuery === "") {
+      if (category === Categories.all && searchQuery === "") {
         //TODO: OPTIMIZE THIS
         let largeList = [];
         categoryKeys.forEach(c => {
